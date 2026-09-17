@@ -10,6 +10,7 @@ A responsive furniture ecommerce concept, built with React, TypeScript, Vinext a
 - Persistent browser shopping bag and wishlist with validated local storage.
 - Delivery options and a clearly labelled demo checkout.
 - Keyboard-accessible dialogs, mobile navigation and reduced-motion support.
+- Device, light and dark appearance choices; device theme is the default, and the chosen mode is saved in this browser.
 - WebMCP search and add-to-bag tools with input validation.
 
 ## Development
