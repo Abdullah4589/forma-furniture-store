@@ -3,8 +3,9 @@
 A responsive furniture ecommerce concept, built with React, TypeScript, Vinext and accessible Radix/Shadcn primitives.
 
 ## Included
-- Seven sample products with material, finish and dimension details.
-- Category filters, sorting and live catalog search.
+- Nineteen sample products across seating, tables, lighting and objects, with material, finish and dimension details.
+- Dedicated collection pages and shareable individual product pages with related pieces.
+- Category and price filters, sorting and live catalog search.
 - Product dialogs, finish selection, quantities and saved pieces.
 - Persistent browser shopping bag and wishlist with validated local storage.
 - Delivery options and a clearly labelled demo checkout.
