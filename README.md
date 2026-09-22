@@ -2,6 +2,16 @@
 
 A responsive furniture ecommerce concept, built with React, TypeScript, Vinext and accessible Radix/Shadcn primitives.
 
+**[Visit the live FORMA store →](https://forma-furniture-studio.aboodi19.chatgpt.site/)**
+
+## Website preview
+
+[![FORMA furniture store homepage](docs/screenshots/forma-homepage.png)](https://forma-furniture-studio.aboodi19.chatgpt.site/)
+
+### Hero detail
+
+[![FORMA homepage hero with the Good design, Better living message](docs/screenshots/forma-hero-detail.jpg)](https://forma-furniture-studio.aboodi19.chatgpt.site/)
+
 ## Included
 - Nineteen sample products across seating, tables, lighting and objects, with material, finish and dimension details.
 - Dedicated collection pages and shareable individual product pages with related pieces.
