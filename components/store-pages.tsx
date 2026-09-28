@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- These pages reuse the store's optimized local catalog photography. */
 
 import { useState, type CSSProperties } from 'react';
-import Link from 'next/link';
+import Link from '@/components/full-page-link';
 import { ArrowRight, ArrowUpRight, Check, GitCompareArrows, X } from 'lucide-react';
 import { money, products, type Product } from '@/lib/catalog';
 

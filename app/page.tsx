@@ -2,8 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- Catalog images are optimized local assets with CSS-reserved dimensions; no image service is needed. */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import Link from '@/components/full-page-link';
 import { ArrowUpRight, ArrowRight, ArrowLeft, Search, Heart, ShoppingBag, Menu, Plus, Minus, Trash2, Check, Truck, X, SlidersHorizontal, GitCompareArrows } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -43,8 +42,11 @@ function Quantity({ value, onChange, label }: {
 }) {
     return <div className="quantity"><button aria-label={`Decrease ${label} quantity`} disabled={value <= 1} onClick={() => onChange(value - 1)}><Minus size={14}/></button><span aria-live="polite">{value}</span><button aria-label={`Increase ${label} quantity`} disabled={value >= 10} onClick={() => onChange(value + 1)}><Plus size={14}/></button></div>;
 }
+function navigateTo(path: string) {
+    // Vinext's production client router currently fails on these route transitions.
+    window.location.assign(path);
+}
 export default function Home({ categoryPage, productPage, contentPage }: { categoryPage?: string; productPage?: string; contentPage?: ContentPage } = {}) {
-    const router = useRouter();
     const pageProduct = productPage ? products.find(p => p.id === productPage) : undefined;
     const [category, setCategory] = useState(categoryPage || 'All pieces');
     const [sort, setSort] = useState('featured');
@@ -89,13 +91,13 @@ export default function Home({ categoryPage, productPage, contentPage }: { categ
         }
         catch { /* Browser storage is optional; selections still work in memory. */ } }, [cart, saved, compare, ready]);
     const openProduct = useCallback((p: Product) => { setSelected(p); setFinish(p.finishes[0].name); setQuantity(1); setSearchOpen(false); setPanel(null); }, []);
-    const browse = (value = 'All pieces') => { if (pageProduct || categoryPage || (contentPage && contentPage !== 'shop')) { router.push(value === 'All pieces' ? '/shop' : `/collections/${value.toLowerCase()}`); return; } setCategory(value); setShowAll(true); setPanel(null); document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' }); };
+    const browse = (value = 'All pieces') => { if (pageProduct || categoryPage || (contentPage && contentPage !== 'shop')) { navigateTo(value === 'All pieces' ? '/shop' : `/collections/${value.toLowerCase()}`); return; } setCategory(value); setShowAll(true); setPanel(null); document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' }); };
     const toggleSaved = (id: string) => { const next = saved.includes(id) ? saved.filter(x => x !== id) : [...saved, id]; setSaved(next); try { localStorage.setItem('forma-saved-v1', JSON.stringify(next)); } catch { /* Saved pieces still work in memory. */ } };
     const toggleCompare = (id: string) => {
         if (compare.includes(id)) { setCompare(compare.filter(item => item !== id)); return; }
         if (compare.length >= 3) { toast.message('Compare up to three pieces', { description: 'Remove a piece from your shortlist to add another.' }); return; }
         setCompare([...compare, id]);
-        toast.success('Added to comparison', { action: { label: 'Compare pieces', onClick: () => router.push('/compare') } });
+        toast.success('Added to comparison', { action: { label: 'Compare pieces', onClick: () => navigateTo('/compare') } });
     };
     const addToBag = useCallback((p: Product, chosen: string, count: number) => {
         const previous = cartRef.current;
