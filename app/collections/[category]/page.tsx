@@ -18,5 +18,5 @@ export default async function CollectionPage({ params }: { params: Promise<{ cat
     const { category } = await params;
     const name = names[category];
     if (!name) notFound();
-    return <Home categoryPage={name}/>;
+    return <Home key={category} categoryPage={name}/>;
 }

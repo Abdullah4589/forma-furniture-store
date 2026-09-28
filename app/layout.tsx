@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./store-pages.css";
 
 export const metadata: Metadata = {
   title: "FORMA — Considered furniture. Everyday living.",

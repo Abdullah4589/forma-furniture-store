@@ -46,3 +46,9 @@ export function validCart(value: unknown): CartLine[] {
         return [];
     return value.filter((line): line is CartLine => !!line && typeof line === 'object' && products.some(p => p.id === line.id && p.finishes.some(f => f.name === line.finish)) && Number.isInteger(line.quantity) && line.quantity > 0 && line.quantity <= 10).slice(0, 50);
 }
+
+export function validComparison(value: unknown): string[] {
+    if (!Array.isArray(value))
+        return [];
+    return [...new Set(value.filter((id): id is string => typeof id === 'string' && products.some(p => p.id === id)))].slice(0, 3);
+}
